@@ -1,6 +1,8 @@
 from django import forms
 from rango.models import Page, Category
 
+from django.utils import timezone
+
 class CategoryForm(forms.ModelForm):
     name = forms.CharField(
         max_length=Category.name_max_length,
@@ -26,8 +28,8 @@ class PageForm(forms.ModelForm):
     )
 
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
-    last_visit = forms.DateTimeField(widget=forms.HiddenInput(), initial=0)
-    first_visit = forms.DateTimeField(widget=forms.HiddenInput(), initial=0)
+    last_visit = forms.DateTimeField(widget=forms.HiddenInput(), initial=timezone.now())
+    first_visit = forms.DateTimeField(widget=forms.HiddenInput(), initial=timezone.now())
 
     def clean(self):
         cleaned_data = self.cleaned_data
