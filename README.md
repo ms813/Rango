@@ -1,2 +1,2 @@
 # Rango
-Coursework for Interhet Technology course
+Coursework for Internet Technology course
