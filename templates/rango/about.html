@@ -10,11 +10,11 @@
         <h1>About Rango</h1>
         <div>
             <p>Rango says here is the about page.</p>
-            <p>This tutorial has been put  together by {{ author }}</p>
+            <p>This tutorial has been put together by {{ author }}</p>
             <a href='/rango/'>Home</a>
         </div>
 
-        <img width='300px' src="{% static 'images/question_mark.png' %}" alt="question mark">
+        <img src="{% static 'images/question_mark.png' %}" width='300px' alt='question mark'>
         <img width='300px' src="{{ MEDIA_URL }}cat.jpg" alt="cat">
     </body>
 </html>
