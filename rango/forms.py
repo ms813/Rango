@@ -6,7 +6,7 @@ from django.utils import timezone
 class CategoryForm(forms.ModelForm):
     name = forms.CharField(
         max_length=Category.name_max_length,
-        help_text='Pleaes enter the category name.'
+        help_text='Please enter the category name.'
     )
 
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)

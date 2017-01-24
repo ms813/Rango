@@ -31,7 +31,7 @@ class Category(models.Model):
 
 class Page(models.Model):
     url_max_length = 200;
-    title_max_length = 120;
+    title_max_length = 128;
 
     category = models.ForeignKey(Category)
     title = models.CharField(max_length=title_max_length)
