@@ -26,6 +26,8 @@ class PageForm(forms.ModelForm):
     )
 
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+    last_visit = forms.DateTimeField(widget=forms.HiddenInput(), initial=0)
+    first_visit = forms.DateTimeField(widget=forms.HiddenInput(), initial=0)
 
     def clean(self):
         cleaned_data = self.cleaned_data

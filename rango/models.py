@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 from django.db import models
 from django.template.defaultfilters import slugify
 
+from django.utils import timezone
+
 class Category(models.Model):
     name_max_length = 128
     name = models.CharField(max_length=name_max_length, unique=True)
@@ -35,6 +37,8 @@ class Page(models.Model):
     title = models.CharField(max_length=title_max_length)
     url = models.URLField(max_length=url_max_length)
     views = models.IntegerField(default=0)
+    last_visit = models.DateTimeField(default=timezone.now)
+    first_visit = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.title

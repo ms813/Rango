@@ -3,7 +3,8 @@ from django.core.urlresolvers import reverse
 from django.contrib.staticfiles import finders
 from django.core.urlresolvers import reverse
 
-from rango.models import Category
+from rango.models import Category, Page
+from django.utils import timezone
 
 # Thanks to Enzo Roiz https://github.com/enzoroiz who made these tests during an internship with us
 
@@ -45,6 +46,29 @@ class IndexViewTests(TestCase):
 
         num_cats = len(response.context['categories'])
         self.assertEqual(num_cats, 4)
+
+class PageModelTests(TestCase):
+    def test_ensure_first_visit_not_future(self):
+        # add a category, then add a page to it
+        cat = Category(name='test')
+        cat.save()
+        page = Page(category = cat)
+        page.save()
+
+        # assert the page was first visited either now or earlier
+        self.assertTrue(page.first_visit <= timezone.now())
+
+        # assert the page was last visited either now or earlier
+        self.assertTrue(page.last_visit <= timezone.now())
+
+    def test_ensure_first_visit_before_or_equal_to_last_visit(self):
+        # add a category, then add a page to it
+        cat = Category(name='test')
+        cat.save()
+        page = Page(category = cat)
+        page.save()
+
+        self.assertTrue(page.first_visit <= page.last_visit)
 
 class CategoryMethodTests(TestCase):
     def test_ensure_views_are_positive(self):
