@@ -61,7 +61,6 @@ def add_page(request, category_name_slug):
                 page.category = category
                 page.views = 0
                 page.save()
-                print("HERE FUCKER")
                 return show_category(request, category_name_slug)
         else:
             print(form.errors)
